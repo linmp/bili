@@ -55,8 +55,8 @@ class Message(db.Model):
 class MessageToTag(db.Model):
     __tablename__ = "message_to_tag"
     id = db.Column(db.Integer, primary_key=True)  # 主键
-    message_id = db.Column(db.Integer, db.ForeignKey("message.id"))  # 所属留言条
-    tag_id = db.Column(db.Integer, db.ForeignKey("tag.id"))  # 所属标签
+    message_id = db.Column(db.Integer, db.ForeignKey("message.id", ondelete='CASCADE'))  # 所属留言条
+    tag_id = db.Column(db.Integer, db.ForeignKey("tag.id", ondelete='CASCADE'))  # 所属标签
 
 
 if __name__ == '__main__':
