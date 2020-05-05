@@ -1,54 +1,107 @@
-[Leetcode官网](https://leetcode-cn.com/problemset/all/)
+## 概念
 
-### 数据结构
+### 逻辑结构｜存储结构
 
-资料来源自：https://github.com/Jack-Lee-Hiter/AlgorithmsByPython 
+ **逻辑结构**：数据元素之间的关系，逻辑上的关系，与存储方式无关
 
-> 数据结构就是研究数据的**逻辑结构**和**物理结构**以及它们之间**相互关系**，并对这种结构定义相应的运算，而且确保经过这些运算后所得到的新结构仍然是原来的结构类型。
+- 集合结构 独立但有整体关系(属于同一个集合的整体关系)
+- 线性结构　一对一
+- 树状结构　一对多
+- 图状结构　多对多
 
-1. 逻辑结构：数据之间的相互关系。
-   * 集合 结构中的数据元素除了同属于一种类型外，别无其它关系。
-   * 线性结构 数据元素之间一对一的关系
-   * 树形结构 数据元素之间一对多的关系
-   * 图状结构或网状结构 结构中的数据元素之间存在多对多的关系
-2. 物理结构/存储结构：数据在计算机中的表示。物理结构是描述数据具体在内存中的存储（如：顺序结构、链式结构、索引结构、哈希结构）等
+**存储结构**：存储的方式,元素之间的存储位置关系
 
----
+- 顺序存储 (数据一个接着一个贴在一起的)
+- 链式存储(每个数据不一定贴在一起，但是当前数据有下一个数据的位置)
 
-### 线性表
 
-> 线性表的顺序存储结构：把线性表的结点按逻辑顺序依次存放在一组地址连续的存储单元里。
+
+### 算法的复杂度
+
+**时间复杂度**：
+
+- 常量O(1) | [判断或者运算一次]
+- 对数O(log2n) | [二分搜索]
+- 线性O(n) | [无序数组的搜索]
+- 线性对数O(nlog2n) | [快速排序]
+- k次方O(n**k) | [冒泡排序...]
+
+最好、最坏、平均时间复杂度(所以可能情况的概率平均复杂度)
+
+
+
+**空间复杂度**：
+
+- 辅助空间相对于输入数据量而言的所占的存储大小
+
+
+
+[leetcode之001](https://leetcode-cn.com/problems/two-sum/)
+
+暴力破解：
+
+```python
+class Solution:
+    def twoSum(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        length = len(nums)
+        for i in range(length):
+            for j in range(i + 1, length):
+                if nums[i] + nums[j] == target:
+                    return [i, j]
+        
+```
+
+>时间复杂度为O(n^2) 
+>空间复杂度：O(1)
+
+
+
+用空间换时间：字典提高速度
+
+```python
+class Solution:
+    def twoSum(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        temp = {}
+        length = len(nums)
+        for index in range(length):  # 循环拿下标
+            if target - nums[index] in temp:  # 判断互补数据是否已经存起来
+                i, j = temp[target - nums[index]], index  # 拿出下标
+                return [i, j]
+            else:
+                temp[nums[index]] = index
+```
+
+>时间复杂度为O(n) 
+>空间复杂度    O(n)
+
+
+
+> 尝试一波
 >
->    * 插入：插入新结点，之后结点后移。平均时间复杂度:O(n)
->    * 删除：删除节点，之后结点前移。平均时间复杂度:O(n)
-
-> 线性链表：用一组任意的存储单元来依次存放线性表的结点，这组存储单元即可以是连续的，也可以是不连续的，甚至是零散分布在内存中的任意位置上的。
->
-> 
-> * 查找：只能从链表的头指针出发，顺链域next逐个结点往下搜索，直到搜索到第i个结点为止。因此，**链表不是随机存取结构**。
-> * 插入：先找到表的第i-1的存储位置，然后插入。新结点先连后继，再连前驱。
-> * 删除：首先找到a<sub>i-1</sub>的存储位置p。然后令p–>next指向a<sub>i</sub>的直接后继结点，即把a<sub>i</sub>从链上摘下。最后释放结点a<sub>i</sub>的空间.r=p->next;p->next=r->next;delete r。
-
-
-
-## 栈和队列
-
-### 栈
-
-> 栈(Stack)是限制在表的一端进行插入和删除运算的线性表，通常称插入、删除的这一端为栈顶(Top)，另一端为栈底(Bottom)。先进后出。
->
-
-
-
-### 队列
-
-> 队列(Queue)也是一种运算受限的线性表。它只允许在表的一端进行插入，而在另一端进行删除。允许删除的一端称为队头(front)，允许插入的一端称为队尾(rear)。先进先出。
->
-> 队列与栈类似,差别仅在于向队列里添加元素时,元素被加到尾部(入队),而提取元素时则
-> 从队列头部开始(出队)。这种机制也称作 FIFO(first in, first out,先进先出),就像排队一样;而
-> 栈则被称作 LIFO(last in, first out,后进先出),就像垒一堆盘子一样。
+> [剑指offer之03](https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/)
+> [剑指offer之05](https://leetcode-cn.com/problems/ti-huan-kong-ge-lcof/)
 
 
 
 
+
+## 顺序表
+
+## 栈与队列
+
+## 树
+
+## 图
+
+## 排序
 
