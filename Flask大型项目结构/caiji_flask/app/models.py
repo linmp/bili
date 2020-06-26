@@ -1,5 +1,14 @@
 from . import db
 
+
+"""
+python3 manage.py db init
+python3 manage.py db migrate -m "message"
+python3 manage.py db upgrade
+python3 manage.py db downgrade
+"""
+
+
 # 用户表
 class User(db.Model):
     __tablename__ = "user"
@@ -20,8 +29,3 @@ class Admin(db.Model):
     phone = db.Column(db.String(11))  # 手机号 可以为空
     address = db.Column(db.String(11))  # 地址
 
-
-try:
-    db.create_all()
-except:
-    pass
