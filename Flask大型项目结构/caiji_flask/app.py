@@ -25,6 +25,17 @@ class User(db.Model):
     address = db.Column(db.String(11))  # 地址
 
 
+# 管理员表
+class Admin(db.Model):
+    __tablename__ = "admin"
+    id = db.Column(db.Integer, primary_key=True)  # 主键
+    username = db.Column(db.String(64), nullable=False, unique=True)  # 账户
+    password = db.Column(db.String(64), nullable=False)  # 密码
+    power = db.Column(db.Enum("管理员", "超级管理员"), nullable=False, default="管理员")  # 权限
+    phone = db.Column(db.String(11))  # 手机号 可以为空
+    address = db.Column(db.String(11))  # 地址
+
+
 try:
     db.create_all()
 except:
@@ -35,7 +46,7 @@ except:
 #########################
 app.config["SESSION_TYPE"] = "redis"  # 存session进redis
 app.config["SESSION_USE_SIGNER"] = True  # 对cookie中session_id进行隐藏处理 加密混淆
-app.config["PERMANENT_SESSION_LIFETIME"] = 10  # session数据的有效期，单位秒
+app.config["PERMANENT_SESSION_LIFETIME"] = 20  # session数据的有效期，单位秒
 app.config['SESSION_REDIS'] = redis.Redis(host='pukgai.com', port=6379, password="jamkung", db=2)  # 操作的redis配置
 
 # 利用flask-session，将session数据保存到redis中
@@ -77,7 +88,7 @@ def user_register():
 
 # 登录
 @app.route("/user/login", methods=["POST"])
-def login():
+def user_login():
     get_data = request.get_json()
     username = get_data.get("username")
     password = get_data.get("password")
@@ -89,16 +100,17 @@ def login():
     # 如果用户存在并且密码对
     if user and user.password == password:
         # 如果验证通过 保存登录状态在session中
-        session["username"] = username
+        session["user_username"] = username
         return jsonify(msg="登录成功", code=200, username=username)
     else:
         return jsonify(msg="账号或密码错误", code=4001)
 
 
+
 # 检查登录状态
 @app.route("/user/session", methods=["GET"])
-def check_session():
-    username = session.get("username")
+def user_check_session():
+    username = session.get("user_username")
     if username is not None:
         # 操作逻辑 数据库什么的
         # 数据库里面 把你的头像 等级 金币数量 查询出来
@@ -109,8 +121,80 @@ def check_session():
 
 # 登出
 @app.route("/user/logout", methods=["DELETE"])
-def logout():
-    username = session.get("username")
+def user_logout():
+    username = session.get("user_username")
+    if username is None:
+        return jsonify(msg="出错了，没登录!", code=4000)
+
+    session.clear()  # 留个坑
+    return jsonify(msg="成功退出登录!", code=200)
+
+
+
+
+# 管理员注册
+@app.route("/admin/register", methods=["POST"])
+def admin_register():
+    try:
+        my_json = request.get_json()
+        print(my_json)
+        username = my_json.get("username")
+        password = my_json.get("password")
+        if not all([username, password]):
+            return jsonify(msg="参数不完整", code=4000)
+
+        admin = Admin(username=username, password=password)
+
+        # 添加到数据库
+        try:
+            db.session.add(admin)
+            db.session.commit()
+            return jsonify(code=200, msg="注册成功", username=username)  # 成功
+        except Exception as e:
+            print(e)
+            return jsonify(msg="存数据库失败", code=4001)
+
+    except Exception as e:
+        print(e)
+        return jsonify(msg="出错了哦，请查看是否正确访问", code=4002)
+
+
+# 管理员登录
+@app.route("/admin/login", methods=["POST"])
+def admin_login():
+    get_data = request.get_json()
+    username = get_data.get("username")
+    password = get_data.get("password")
+
+    if not all([username, password]):
+        return jsonify(msg="参数不完整", code=4000)
+
+    admin = Admin.query.filter_by(username=username).first()
+    # 如果用户存在并且密码对
+    if admin and admin.password == password:
+        # 如果验证通过 保存登录状态在session中
+        session["admin_username"] = username
+        return jsonify(msg="登录成功", code=200, username=username)
+    else:
+        return jsonify(msg="账号或密码错误", code=4001)
+
+
+# 检查管理员登录状态
+@app.route("/admin/session", methods=["GET"])
+def admin_check_session():
+    username = session.get("admin_username")
+    if username is not None:
+        # 操作逻辑 数据库什么的
+        # 数据库里面 把你的头像 等级 金币数量 查询出来
+        return jsonify(username=username, code=200)
+    else:
+        return jsonify(msg="出错了，没登录", code=4000)
+
+
+# 管理员登出
+@app.route("/admin/logout", methods=["DELETE"])
+def admin_logout():
+    username = session.get("admin_username")
     if username is None:
         return jsonify(msg="出错了，没登录!", code=4000)
 
