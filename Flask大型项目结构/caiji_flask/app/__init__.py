@@ -1,0 +1,32 @@
+import redis
+from flask import Flask
+from flask_session import Session
+from flask_sqlalchemy import SQLAlchemy
+from config import config_map
+
+import pymysql
+
+db = SQLAlchemy()  # 没有参数的实例化数据库对象
+
+
+def create_app(dev_name):
+    """
+    返回一个实例化并且配置好数据的一个app
+    dev_name：选择环境的参数
+    :return:
+    """
+    app = Flask(__name__)
+    config_class = config_map.get(dev_name)
+    app.config.from_object(config_class)  # 从类中读取需要的信息
+
+    db.init_app(app)  # 实例化的数据库 配置信息
+
+    # 利用flask-session，将session数据保存到redis中
+    Session(app)
+
+    # 注册蓝图
+    from .api import user, admin
+
+    app.register_blueprint(user, url_prefix="/user")
+    app.register_blueprint(admin, url_prefix="/admin")
+    return app

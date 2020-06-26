@@ -1,66 +1,19 @@
-from flask import Flask, session, jsonify, request
-from flask_sqlalchemy import SQLAlchemy
-from flask_session import Session
-import redis
-import pymysql
+from flask import session, jsonify, request, Blueprint
+from .models import User, Admin, db
 
-app = Flask(__name__)
-
-# 数据库的配置
-
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:jamkung@pukgai.com:3306/caiji_flask'
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-app.config["SECRET_KEY"] = "sdfsdfsdf"
-
-db = SQLAlchemy(app)  # 实例化的数据库
+# 创建蓝图对象
+user = Blueprint("user", __name__)  # 用户蓝图对象
+admin = Blueprint("admin", __name__)  # 管理员蓝图对象
 
 
-# 用户表
-class User(db.Model):
-    __tablename__ = "user"
-    id = db.Column(db.Integer, primary_key=True)  # 主键
-    username = db.Column(db.String(64), nullable=False, unique=True)  # 账户
-    password = db.Column(db.String(64), nullable=False)  # 密码
-    phone = db.Column(db.String(11))  # 手机号 可以为空
-    address = db.Column(db.String(11))  # 地址
-
-
-# 管理员表
-class Admin(db.Model):
-    __tablename__ = "admin"
-    id = db.Column(db.Integer, primary_key=True)  # 主键
-    username = db.Column(db.String(64), nullable=False, unique=True)  # 账户
-    password = db.Column(db.String(64), nullable=False)  # 密码
-    power = db.Column(db.Enum("管理员", "超级管理员"), nullable=False, default="管理员")  # 权限
-    phone = db.Column(db.String(11))  # 手机号 可以为空
-    address = db.Column(db.String(11))  # 地址
-
-
-try:
-    db.create_all()
-except:
-    pass
-
-#########################
-#   session 存redis上   #
-#########################
-app.config["SESSION_TYPE"] = "redis"  # 存session进redis
-app.config["SESSION_USE_SIGNER"] = True  # 对cookie中session_id进行隐藏处理 加密混淆
-app.config["PERMANENT_SESSION_LIFETIME"] = 20  # session数据的有效期，单位秒
-app.config['SESSION_REDIS'] = redis.Redis(host='pukgai.com', port=6379, password="jamkung", db=2)  # 操作的redis配置
-
-# 利用flask-session，将session数据保存到redis中
-Session(app)
-
-
-# 成功响应
-@app.route("/", methods=["GET"])
+# 用户初始页面
+@user.route("/index", methods=["GET"])
 def hello_world():
-    return "hello 音宫"
+    return "hello 音宫 这里是用户初始页面"
 
 
 # 用户注册
-@app.route("/user/register", methods=["POST"])
+@user.route("/register", methods=["POST"])
 def user_register():
     try:
         my_json = request.get_json()
@@ -87,7 +40,7 @@ def user_register():
 
 
 # 登录
-@app.route("/user/login", methods=["POST"])
+@user.route("/login", methods=["POST"])
 def user_login():
     get_data = request.get_json()
     username = get_data.get("username")
@@ -106,9 +59,8 @@ def user_login():
         return jsonify(msg="账号或密码错误", code=4001)
 
 
-
 # 检查登录状态
-@app.route("/user/session", methods=["GET"])
+@user.route("/session", methods=["GET"])
 def user_check_session():
     username = session.get("user_username")
     if username is not None:
@@ -120,7 +72,7 @@ def user_check_session():
 
 
 # 登出
-@app.route("/user/logout", methods=["DELETE"])
+@user.route("/logout", methods=["DELETE"])
 def user_logout():
     username = session.get("user_username")
     if username is None:
@@ -130,10 +82,14 @@ def user_logout():
     return jsonify(msg="成功退出登录!", code=200)
 
 
+# 管理员初始页面
+@admin.route("/index", methods=["GET"])
+def hello_world():
+    return "hello 音宫 这里是管理员初始页面"
 
 
 # 管理员注册
-@app.route("/admin/register", methods=["POST"])
+@admin.route("/register", methods=["POST"])
 def admin_register():
     try:
         my_json = request.get_json()
@@ -160,7 +116,7 @@ def admin_register():
 
 
 # 管理员登录
-@app.route("/admin/login", methods=["POST"])
+@admin.route("/login", methods=["POST"])
 def admin_login():
     get_data = request.get_json()
     username = get_data.get("username")
@@ -180,7 +136,7 @@ def admin_login():
 
 
 # 检查管理员登录状态
-@app.route("/admin/session", methods=["GET"])
+@admin.route("/session", methods=["GET"])
 def admin_check_session():
     username = session.get("admin_username")
     if username is not None:
@@ -192,7 +148,7 @@ def admin_check_session():
 
 
 # 管理员登出
-@app.route("/admin/logout", methods=["DELETE"])
+@admin.route("/logout", methods=["DELETE"])
 def admin_logout():
     username = session.get("admin_username")
     if username is None:
@@ -200,7 +156,3 @@ def admin_logout():
 
     session.clear()
     return jsonify(msg="成功退出登录!", code=200)
-
-
-if __name__ == '__main__':
-    app.run()
