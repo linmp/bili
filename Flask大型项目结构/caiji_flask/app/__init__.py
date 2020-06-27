@@ -25,8 +25,8 @@ def create_app(dev_name):
     Session(app)
 
     # 注册蓝图
-    from .api import user, admin
+    from app import admin, main  # 导入包
 
-    app.register_blueprint(user, url_prefix="/user")
-    app.register_blueprint(admin, url_prefix="/admin")
+    app.register_blueprint(main.main, url_prefix="/main")  # 绑定包里面的蓝图对象
+    app.register_blueprint(admin.admin, url_prefix="/admin")
     return app
