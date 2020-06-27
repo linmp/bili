@@ -1,0 +1,100 @@
+###################################
+# mini项目的服务器们
+###################################
+upstream mini {
+   server 122.51.236.1:5050;
+   server 122.51.236.2:6000;
+   server 122.51.236.4:6001;
+}
+
+###################################
+# q项目的服务器们
+###################################
+upstream q {
+   server 122.51.236.1:6050;
+   server 122.51.236.2:7000;
+   server 122.51.236.3:7000;
+   server 122.51.236.4:7000;
+   server 122.51.236.5:7000;
+}
+
+
+
+###################################
+# http 链接转跳
+###################################
+server {
+	listen 80;
+
+	server_name q.jamkung.com;
+	
+	return 301 https://q.jamkung.com$request_uri;
+}
+
+###################################
+# https://q.jamkung.com
+###################################
+server {
+        listen 443;
+        server_name q.jamkung.com;
+
+	proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Real-Port $remote_port;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+	client_max_body_size 10M;
+
+        root /var/www/html;
+        index index.html index.htm;
+
+	################################### 
+        ssl on;
+
+	# 配置服务器ssl 秘钥与公钥 
+        ssl_certificate sites-available/cert/1_q.jamkung.com_bundle.crt;
+        ssl_certificate_key sites-available/cert/2_q.jamkung.com.key;
+
+        ssl_session_timeout 5m;
+        ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+        ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;
+        ssl_prefer_server_ciphers on;
+	###################################
+
+        location / {
+
+	        proxy_set_header Host $host;
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header X-Real-Port $remote_port;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		
+		proxy_pass http://q;
+               
+
+
+        }
+
+        location /mini/ {
+	   
+		
+		 proxy_set_header Host $host;
+                 proxy_set_header X-Real-IP $remote_addr;
+                 proxy_set_header X-Real-Port $remote_port;
+                 proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+
+                proxy_pass http://mini;
+
+        } 
+
+	location /fileweb/ {
+		
+
+		 try_files $uri $uri/ =404;
+	}
+
+
+ }
+
+
+
