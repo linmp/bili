@@ -1,6 +1,7 @@
 from datetime import datetime
 import random
 from . import client, bucket, region
+from werkzeug.utils import secure_filename
 
 
 def upload_file(file, path="/default/"):
@@ -20,18 +21,24 @@ def upload_file(file, path="/default/"):
         Key=key,
         EnableMD5=False
     )
-    print(response['ETag'])
+    # print(response['ETag'])
     url = "https://" + bucket + ".cos." + region + ".myqcloud.com" + key
     return url
 
 
 def rename(file):
-    # 修改文件名字为自定义的不重复的
+    """
+    修改文件名字为 自定义的 不重复的
+    :param file:文件数据
+    :return:
+    """
+    filename = secure_filename(file.filename)
+
     try:
-        get_hz = file.filename.rsplit('.', 1)[1]  # 获取后缀
+        get_hz = filename.rsplit('.', 1)[1]  # 获取后缀
         random_num = random.randint(0, 100)
         file.filename = datetime.now().strftime("%Y%m%d%H%M%S") + "_" + str(random_num) + "." + get_hz
     except Exception as e:
         print(e)
-        file.filename = datetime.now().strftime("%Y%m%d%H%M%S") + file.filename
+        file.filename = datetime.now().strftime("%Y%m%d%H%M%S") + filename
     return file
