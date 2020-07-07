@@ -12,8 +12,9 @@ class Config:
 # 开发环境
 class DevelopmentConfig(Config):
     """开发模式的配置信息"""
-    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:jamkung@pukgai.com:3306/caiji_dev'
-    SESSION_REDIS = redis.Redis(host='pukgai.com', port=6379, password="jamkung", db=2)  # 操作的redis配置
+    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:123456@127.0.0.1:3306/caiji_dev'
+    # SESSION_REDIS = redis.Redis(host='127.0.0.1', port=6379, password="jamkung", db=2)  # 操作的redis配置
+    SESSION_REDIS = redis.Redis(host='127.0.0.1', port=6379, db=2)  # 操作的redis配置
     DEBUG = True
 
 # 线上环境

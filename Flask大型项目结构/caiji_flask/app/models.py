@@ -169,7 +169,7 @@ class User(db.Model):
     # 我的所有反馈
     message_sends = db.relationship("Message", backref="sender")  # 关联反馈表
     # 我所收藏的博客
-    my_collects = db.relationship("CollectBlog", secondary="blog_to_tag", backref="collector")  # 关联收藏博客表
+    my_collects = db.relationship("Blog", secondary="collect_blog", backref="collector")  # 关联收藏博客表
     # 关联我的搜索表
     my_search_history = db.relationship("SearchHistory", backref="user")  # 关联搜索历史表
 

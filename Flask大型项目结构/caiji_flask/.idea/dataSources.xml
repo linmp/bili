@@ -7,5 +7,11 @@
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://pukgai.com:3306/caiji_dev</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="caiji_dev@localhost" uuid="4327a3cc-7a7c-4946-b4b9-961204dd83d1">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/caiji_dev</jdbc-url>
+    </data-source>
   </component>
 </project>

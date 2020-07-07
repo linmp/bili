@@ -10,7 +10,7 @@ manager.add_command("db", MigrateCommand)  # 绑定额外的db命令
 
 """
 python3 manage.py db init #初始化
-python3 manage.py db migrate -m "message" #提交变更
+python3 manage.py db migrate -m "init message" #提交变更
 python3 manage.py db upgrade # 升级变更
 python3 manage.py db downgrade # 降级变更
 """

@@ -1,6 +1,6 @@
 ## MySQL安装
 
-### :happy:安装
+### :arrow_heading_up: 安装
 
 `sudo apt-get update`
 
@@ -38,19 +38,17 @@ flush privileges;
 >
 >>命令:
 >>
->>use mysql;
+>>`use mysql;`
 >>
->>update user set authentication_string=password("你的密码") where user='root';
+>>`update user set authentication_string=password("你的密码") where user='root';`
 >>
->>update user set password=password('你的密码') where user='root';
+>>`update user set plugin="mysql_native_password"; `
 >>
->>update user set plugin="mysql_native_password"; 
->>
->>flush privileges;
+>>`flush privileges;`
 >>
 >>重启mysql服务
 >>
->> systemctl restart mysql.service
+>>`systemctl restart mysql.service`
 
 
 
