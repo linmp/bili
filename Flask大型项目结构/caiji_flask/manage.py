@@ -16,5 +16,34 @@ python3 manage.py db downgrade # 降级变更
 """
 
 
+# 初始化管理员账号数据,添加manager命令
+@manager.command
+def create_admin():
+    from app.models import Admin
+    from config import ADMIN_USERNAME, ADMIN_PASSWORD, ADMIN_POWER, ADMIN_AVATAR, ADMIN_PHONE
+    try:
+        admin_new = Admin(username=ADMIN_USERNAME, password=ADMIN_PASSWORD,
+                          avatar=ADMIN_AVATAR,
+                          power=ADMIN_POWER, phone=ADMIN_PHONE)
+        db.session.add(admin_new)
+        db.session.commit()
+        print("初始化成功")
+    except Exception as e:
+        print(e)
+        print("初始化失败")
+        db.session.rollback()
+
+
+
 if __name__ == '__main__':
-    manager.run()
+    app.run()
+
+    """
+    # 启动命令 gunicorn -w 4 -b 0.0.0.0:5050 manage:app
+    Gunicorn 的常用运行参数说明：
+    -w WORKERS, –workers: worker 进程的数量，通常每个 CPU 内核运行 2-4 个 worker 进程。
+    -b BIND, –bind: 指定要绑定的服务器端口号或 socket
+    -c CONFIG, –config: 指定 config 文件
+    -k WORKERCLASS, –worker-class: worker 进程的类型，如 sync, eventlet, gevent, 默认为 sync
+    -n APP_NAME, –name: 指定 Gunicorn 进程在进程查看列表里的显示名（比如 ps 和 htop 命令查看）
+    """

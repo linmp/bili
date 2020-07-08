@@ -2,9 +2,11 @@ import redis
 from flask import Flask
 from flask_session import Session
 from flask_sqlalchemy import SQLAlchemy
-from config import config_map
+from config import config_map, redis_store
 
 import pymysql
+
+# 实例化一个我们需要的redis对象存储缓存数据
 
 db = SQLAlchemy()  # 没有参数的实例化数据库对象
 

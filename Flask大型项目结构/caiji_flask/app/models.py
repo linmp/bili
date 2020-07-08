@@ -149,6 +149,21 @@ class Blog(db.Model):
     tags = db.relationship("Tag", secondary="blog_to_tag", backref="blog")  # 关联标签
     comments = db.relationship("Comment", backref="blog")  # 关联评论表
 
+    def to_dict(self):
+        tag = []
+        for t in self.tags:
+            tag.append(t.name)
+        data = {
+            "title": self.title,
+            "summary": self.summary,
+            "content": self.content,
+            "logo": self.logo,
+            "page_views": self.page_views,
+            "tags": tag,
+
+        }
+        return data
+
 
 # 用户表
 class User(db.Model):

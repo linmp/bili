@@ -1,5 +1,16 @@
 # 需要的配置
 import redis
+redis_store = redis.Redis(host='127.0.0.1', port=6379, db=1)  # 操作的redis配置
+
+
+##### 常量
+ADMIN_USERNAME = "好音宫"
+ADMIN_PASSWORD = "caiji"
+ADMIN_AVATAR = "https://mnp-1300173558.cos.ap-shanghai.myqcloud.com/default/20200708202410.jpg"
+ADMIN_POWER = "超级管理员"
+ADMIN_PHONE = "13525468134"
+
+
 
 class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
