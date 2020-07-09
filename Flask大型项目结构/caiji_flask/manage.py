@@ -36,7 +36,7 @@ def create_admin():
 
 
 if __name__ == '__main__':
-    app.run()
+    manager.run()
 
     """
     # 启动命令 gunicorn -w 4 -b 0.0.0.0:5050 manage:app
