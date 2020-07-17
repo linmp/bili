@@ -2,15 +2,10 @@
 
 ### 架构 
 
-![架构1](https://image.jamkung.com/md/20200526_%E6%9E%B6%E6%9E%841.png)
+![架构1](../images/20200526_%E6%9E%B6%E6%9E%841.png)
 
 
-
----
-
-
-
-![架构2](https://image.jamkung.com/md/20200526_%E6%9E%B6%E6%9E%842.png)
+![架构2](../images/20200526_%E6%9E%B6%E6%9E%842.png)
 
 ---
 
