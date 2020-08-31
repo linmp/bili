@@ -1,0 +1,19 @@
+<cu-custom isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">关于我</view>
+</cu-custom>
+
+<view class="container">
+  <image class="logo" src="http://cdn.hicaiji.com/soup/xsjt.png"></image>
+  <text class="name">醒丧鸡汤</text>
+  <text class="name">开发者信息</text>
+
+  <image class="user-avatar" src="https://cdn.jamkung.com/cards/hyg.jpg"></image>
+  <text class="name">好音宫</text>
+  <text class="name" bindtap="CopyLink" data-mdurl="https://space.bilibili.com/88015135" >b站: 好音宫</text> 
+  <text class="name" bindtap="CopyLink" data-mdurl="https://github.com/BeyondLam" >GitHub: @BeyondLam</text>
+  <text class="name" bindtap="CopyLink" data-mdurl="https://www.hicaiji.com" >个人主页：https://www.hicaiji.com</text>
+
+  <text class="copy">Copyright 2020 好音宫</text>
+
+</view>

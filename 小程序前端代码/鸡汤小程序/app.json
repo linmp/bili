@@ -1,0 +1,40 @@
+{
+  "pages": [
+    "pages/soup/getSoup/index",
+    "pages/instruction/index",
+    "pages/user/user",
+    "pages/about/about"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#f6f6f6",
+    "navigationBarTitleText": "励志鸡汤",
+    "navigationStyle": "custom",
+    "onReachBottomDistance": 50,
+    "backgroundColor": "#ffffff"
+  },
+  "usingComponents": {
+    "cu-custom": "/colorui/components/cu-custom"
+  },
+  "tabBar": {
+    "color": "#000000",
+    "selectedColor": "#75b79e",
+    "backgroundColor": "#F5F5F5",
+    "list": [
+      {
+        "pagePath": "pages/soup/getSoup/index",
+        "text": "鸡汤",
+        "iconPath": "images/cardBag.png",
+        "selectedIconPath": "images/cardBagSelect.png"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "text": "我的",
+        "iconPath": "images/user.png",
+        "selectedIconPath": "images/userSelect.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json",
+  "darkmode": false
+}

@@ -1,0 +1,13 @@
+<cu-custom isBack="{{true}}">
+<!-- <cu-custom bgColor="white" isBack="{{true}}"> -->
+	<view slot="backText">返回</view>
+	<view slot="content">使用说明</view>
+</cu-custom>
+
+
+<!-- 卡背面不能全局左右切换 -->
+<view class="container">
+
+<wemark md="{{text}}" link highlight type="wemark"></wemark>
+
+</view>

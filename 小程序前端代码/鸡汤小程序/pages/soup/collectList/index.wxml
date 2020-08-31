@@ -1,0 +1,25 @@
+<cu-custom bgColor="bg-green" isBack="{{true}}">
+	<view slot="backText">返回</view>
+	<view slot="content">我的收藏</view>
+</cu-custom>
+
+<!-- <view class="cu-card article {{isCard?'no-card':''}}"> -->
+<view class="cu-card article " wx:for="{{cardsData}}" data-id="{{item.id}}" bindtap="askDelete">
+
+	<view class="cu-item bg-green shadow">
+		<view class="title bg-green ">
+			<view class="text-cut">{{item.content}}</view>
+		</view>
+
+		<view class="content bg-green ">
+			<view class="desc">
+				<view class="text-content "> {{item.content}}</view>
+				<view>
+					<view class="cu-tag bg-green light sm round">ID: {{item.id}}</view>
+					<view class="cu-tag bg-green light sm round">浏览量：{{item.hits}}</view>
+				</view>
+			</view>
+		</view>
+
+	</view>
+</view>

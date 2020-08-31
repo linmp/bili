@@ -1,0 +1,58 @@
+<cu-custom bgColor="bg-green">
+	<view slot="content">励志鸡汤</view>
+</cu-custom>
+
+<view class="UCenter-bg">
+	<view class="userinfo">
+		<button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" style="margin-bottom:10px;">一键登录</button>
+		<block wx:else>
+			<navigator class="content" url="/pages/profile/profile" hover-class="none">
+				<image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+			</navigator>
+			<text class="userinfo-nickname">{{userInfo.nickName}}</text>
+		</block>
+	</view>
+
+	<image src="https://cdn.jamkung.com/cards/wave.gif" mode="scaleToFill" class="gif-wave"></image>
+
+</view>
+
+
+
+<block wx:if="{{!hasUserInfo && canIUse}}">
+	<view style="text-align:center">首次使用,需要授权用户</view>
+</block>
+
+<block wx:else>
+	<view class="padding flex text-center text-grey bg-white shadow-warp">
+
+
+	</view>
+
+	<view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
+
+		<view class="cu-item arrow">
+			<view class="content" bindtap="showQrcode">
+				<text class="cuIcon-appreciatefill"></text>
+				<text class="text-gray">打赏支持</text>
+			</view>
+		</view>
+
+
+		<view class="cu-item arrow">
+			<navigator class="content" url="/pages/about/about" hover-class="none">
+				<text class="cuIcon-pay"></text>
+				<text class="text-gray">关于我们</text>
+			</navigator>
+		</view>
+
+
+		<!-- <view class="cu-item arrow">
+			<navigator class="content" url="/pages/instruction/index" hover-class="none">
+				<text class="cuIcon-pay"></text>
+				<text class="text-gray">使用说明</text>
+			</navigator>
+		</view> -->
+
+	</view>
+</block>

@@ -1,0 +1,244 @@
+
+page {
+  overflow: auto;
+  min-height: 100%;
+  background-color: #f4f4f4;
+  /* background-color: #75b79e; */
+}
+
+
+/* .row-container {
+    position: relative;
+    width: 100%;
+    background-color: #fff;
+    box-sizing: border-box;
+}
+.row-container .header {
+    display: block;
+    height: 44px;
+    line-height: 44px;
+}
+.row-container .header .left {
+    float: left;
+    color: #444;
+    font-size: 14px;
+    position: relative;
+    padding-left: 25px;
+}
+.row-container .header .right {
+    float: right;
+    font-size: 14px;
+    color: #999;
+    position: relative;
+    padding-right: 25px;
+}
+.row-container .header .hot {
+    font-size: 13px;
+    color: #ffb30f;
+    padding: 0 0 0 25px;
+}
+.row-container .content-wrapper {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    padding: 0 6px;
+    box-sizing: border-box;    
+}
+.row-container .content-list {
+    position: relative;
+    padding: 10px 6px 10px;
+    vertical-align: top;
+    box-sizing: border-box;
+}
+.row-container .content-list .item {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    box-sizing: border-box;  
+}
+.row-container .content-list .item .top {
+    position: relative;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 0;
+    padding-bottom: 63%;
+    box-sizing: border-box;  
+}
+.row-container .content-list .info {
+    position: relative;
+    display: block;
+    width: 100%;
+    padding-top: 5px;
+    box-sizing: border-box;  
+}
+.row-container .content-list .item .avatar-img {
+    margin-left: 10%;
+    width: 50px;
+    height: 50px;
+    background-size: 50px 50px;
+    border-radius: 30px; 
+}
+.row-container .content-list .info .title {
+    width: 100%;
+    max-height: 36px;
+    overflow: hidden;
+    color: #444;
+    font-size: 13px;
+    box-sizing: border-box;  
+    margin-bottom: 4px;
+}
+.row-container .left {
+    float: left;
+    box-sizing: border-box;  
+}
+.row-container .content-list .info .cell {
+    position: relative;
+    width: 50%;
+    font-size: 13px;
+    color: #999;
+    padding-left: 18px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    box-sizing: border-box;
+}
+
+.row-container .content-list .info .user {
+    position: absolute;
+    left: 0;
+    top: 5px;
+    width: 100%;
+    padding-left: 56px;
+    box-sizing: border-box;
+}
+.row-container .text-overflow {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.row-container .content-list .info .name {
+    font-size: 13px;
+    color: #444;
+    line-height: 44rpx;
+}
+.row-container .content-list .info .desp {
+    font-size: 13px;
+    color: #999;
+    padding-top: 2px;
+}
+.row-container .content-list .info .online {
+    position: absolute;
+    top: 25px;
+    width: 48px;
+    padding: 0 1px;
+    color: #fff;
+    background-color: #ccc;
+    border-radius: 6px;
+    text-align: center;
+    height: 20px;
+    line-height: 20px;
+    font-size: 12px;
+}
+
+.content-left{
+    position: relative;
+    width: 50px;
+    height : 10%;
+    float: left;
+    
+}
+.content-right{
+    width:80%;
+    float:right;
+}
+.text-name{
+    font-size: 14px;
+    color: #999;
+}
+.text-body{
+    font-size:17px;
+    color:black;
+    word-wrap:break-word;
+}
+.address-text{
+    font-size: 16px;
+    color: skyblue;
+}
+.up-time{
+    float:right;
+    font-size:14px;
+    color: #999;
+}
+.show-img{
+    width: 60px;
+    height: 60px;
+    padding: 0px 5px 0px 0px;
+    margin-bottom: 10px;
+}
+.slider-wrapper {
+    position: relative;
+    width: 100%;
+    height: 175px;
+    overflow: hidden;
+}
+.slide-image, swiper {
+  width: 100%;
+  height: 175px;
+}
+.header-park-img{
+    width:45%;
+    height: 80px;
+}
+.nav-bar {
+  height: 35px;
+  line-height: 40px;
+  color: #fff;
+  background-color: #fff;
+  font-size: 14px;
+  z-index: 10010;
+  border-bottom: 1px solid #e7e7e7;
+  overflow: hidden;
+}
+.nav-bar .nav-wrp {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+}
+.nav-bar .cell {
+    float:left;
+    width: 100%;
+    height: 35px;
+    position: relative;
+    box-sizing: border-box;
+    padding: 5px;
+}
+.icon-show{
+    width: 12%;
+    height: 35px;
+    float:right;
+}
+.search-input{
+    color:black;
+    float:left;
+    height:20px;
+    width:100%;
+    font-size:16px;
+}
+.place-image{
+    width: 16px; 
+    height: 18px; 
+    background-color: white;
+    margin-top: 3px;
+    float:left;
+}
+ */
+
+
+
+@import "colorui/main.wxss";
+@import "colorui/icon.wxss";

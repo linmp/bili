@@ -1,0 +1,48 @@
+<cu-custom bgColor="bg-green">
+	<view slot="content">干这碗汤</view>
+</cu-custom>
+
+<view class="container" bindtap="mytap" bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd">
+	<view>
+		<!-- 浏览量 -->
+		<view class="cu-capsule round ">
+			<view class="cu-tag bg-green ">
+				浏览量
+			</view>
+			<view class="cu-tag line-blue">
+				{{soupsData[index].hits}}
+			</view>
+		</view>
+
+		<!-- 说明 -->
+		<view class="cu-tag bg-green round fr padding-sm" bindtap="showModal" data-target="bottomModal">说明</view>
+	</view>
+
+	<view class="cu-modal bottom-modal {{modalName=='bottomModal'?'show':''}}" bindtap="hideModal">
+		<view class="cu-dialog bg-green">
+			<view class="padding-xl">
+				双击页面即可收藏语句
+				<view class="padding-sm flex flex-wrap"> </view>
+				轻触文本即可复制
+				<view class="padding-sm flex flex-wrap"> </view>
+				左右滑动页面可以查看下一条
+			</view>
+		</view>
+	</view>
+
+	<!-- 鸡汤 -->
+	<view class="padding radius flex text-center text-grey bg-green shadow-warp margin-top" bindtap="CopyData" data-mdurl="{{soupsData[index].content}}">
+		<text class="word-content">{{soupsData[index].content}}</text>
+	</view>
+</view>
+
+<view class="cu-bar buttonTwo justify-center">
+		<button class="cu-btn bg-green shadow round lg " bindtap="next">左右切换</button>
+</view>
+
+
+
+<button open-type="share" class="qzone">
+	<image src="../../../images/share.png"></image>
+	<text>分享</text>
+</button>

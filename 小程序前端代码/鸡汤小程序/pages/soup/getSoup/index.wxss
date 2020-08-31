@@ -1,0 +1,68 @@
+@font-face {
+font-family: Chalkboard;
+src: url('/assets/font/chalkboard.ttf'),
+}
+
+@import "../../../colorui/main.wxss";
+@import "../../../colorui/icon.wxss";
+page {
+  background: #f4f4f4;
+  display: block;
+  height: 100%;
+}
+
+.container{
+  padding:20px;
+  min-height: 100%;
+}
+
+.word-content {
+  margin: 23rpx auto 18rpx;
+  font-family: Chalkboard;
+  font-size: 64rpx;
+}
+
+.word-definition {
+  margin-top: 19rpx;
+  font-family: Yuanti TC;
+  font-size: 30rpx;
+  color: #585858;
+}
+
+.qzone { 
+  height: 120rpx;
+  width: 120rpx;
+  position: fixed;
+  bottom: 170rpx;
+  right: 30rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 24rpx;
+  background: rgba(0, 0, 0, .6);
+  border-radius: 50%;
+  z-index: 10;
+} 
+.qzone image {
+  height: 70rpx;
+  width: 70rpx;
+}
+.qzone text {
+  color: #fff;  
+}
+
+.qzone button {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  opacity: 0.1;
+  z-index: 99;
+}
+
+.buttonTwo {
+  position: fixed;
+  bottom: 340rpx;
+  width: 100%;
+
+}

@@ -1,0 +1,20 @@
+@import "../../colorui/main.wxss";
+@import "../../colorui/icon.wxss";
+page {
+  background: #75b79e;
+  display: block;
+}
+
+.container{
+  padding:20px;
+  min-height: 100%;
+}
+
+
+
+.copy {
+  margin-top: 80rpx;
+  font-family: Italic;
+  font-size: 20rpx;
+  color: #585858;
+}
