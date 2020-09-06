@@ -24,8 +24,8 @@
       {
         "pagePath": "pages/soup/getSoup/index",
         "text": "鸡汤",
-        "iconPath": "images/cardBag.png",
-        "selectedIconPath": "images/cardBagSelect.png"
+        "iconPath": "images/soup.png",
+        "selectedIconPath": "images/soupSelect.png"
       },
       {
         "pagePath": "pages/user/user",
@@ -35,6 +35,5 @@
       }
     ]
   },
-  "sitemapLocation": "sitemap.json",
-  "darkmode": false
+  "sitemapLocation": "sitemap.json"
 }

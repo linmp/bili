@@ -20,8 +20,6 @@ module.exports = `
 ### **提建议**
  如何给开发者提建议？邮箱：admin@jamkung.com
 
-
-
 ### **感谢**
 
 - 感谢：logoly.pro p站风格的图标

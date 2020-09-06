@@ -1,11 +1,8 @@
 //app.js
 var Api = require('/utils/api.js');
 
-
-
 App({
   onLaunch: function () {
-    // 获取qq小程序的导航栏高度
     wx.getSystemInfo({
       success: e => {
         this.globalData.StatusBar = e.statusBarHeight;
@@ -49,16 +46,15 @@ App({
       }
     })
 
+    // 进入页面加载的提示语
     wx.showLoading({
-
       title: "加载信息ing",
-
       mask: true
 
     })
 
 
-
+    // 判断能否获取用户的信息
     wx.getSetting({
       success: res => {
         if (res.authSetting['scope.userInfo']) {
@@ -73,7 +69,6 @@ App({
         }
       }
     })
-
   },
 
   globalData: {

@@ -1,3 +1,78 @@
+  /**
+   * 请求方法例子
+   */
+  // create: function () {
+  //   var that = this;
+  //       wx.request({
+  //       url: Api.createCard() ,
+  //       data: {
+  //           "question":that.data.question,
+  //           "color":that.data.color
+  //       },
+  //       method: 'POST',
+  //       header: {
+  //           'content-type': 'application/json',
+  //       },
+  //       success: function(res) {
+  // 
+  //           if(res.data.code=='200'){
+  //               wx.showModal({
+  //                   title: '创建成功',
+  //                   content: res.data.msg,
+  //                   showCancel: false,
+  //                 })
+  //                 setTimeout(function () {
+  //                   wx.navigateBack({
+  //                     delta: 1
+  //                   })
+  //                 }, 1000)                
+  //           }else{
+  //               wx.showModal({
+  //                   title: '创建失败',
+  //                   content: res.data.msg,
+  //                   showCancel: false,
+  //                 })
+  //           }
+  //       },
+  //       fail: function() {},
+  //       complete: function() {}
+  //       })
+  //   },
+
+
+/**
+ * 请求接口的例子
+ */
+// getCArdsMethods: function () {
+//   var that = this;
+//   wx.request({
+//     url: Api.getSoup(),
+//     method: 'GET',
+//     header: {
+//       'content-type': 'application/x-www-form-urlencoded',
+//     },
+//     success: function (res) {
+//       if (res.data.code == "200") {
+//         if (res.data.data.length >= 1) {
+//           console.log(res.data.data)
+//           that.setData({
+//             soupsData: res.data.data,
+//             index: 0,
+//           })
+//         } else {
+//           wx.showModal({
+//             title: '请求失败',
+//             content: '没有数据~',
+//             showCancel: false,
+//           })
+//         }
+//       }
+//     }
+//   })
+
+// },
+
+
 // 根url
 var HOST_URI = 'https://soup.hicaiji.com';
 // 获取openid 
@@ -55,5 +130,3 @@ module.exports = {
   collectDelete: _collectDelete,
   getMyCollect:_getMyCollect
 };
-
-
