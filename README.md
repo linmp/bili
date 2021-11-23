@@ -1,8 +1,8 @@
 # 加油呀！！！
 
-GitHub地址（https://github.com/BeyondLam/bili）
+GitHub地址（https://github.com/mplmp/bili ）
 
-Gitee地址（https://gitee.com/jamkung/bili）
+Gitee地址（https://gitee.com/jamkung/bili ）
 
 gitee国内访问会比较快点，但是还是希望大家能去github给我个赞。
 
